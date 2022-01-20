@@ -76,6 +76,7 @@ const config: Configuration = {
     filename: '[name].js',
     publicPath: '/dist/',
   },
+
   devServer: {
     historyApiFallback: true,
     port: 3090,
