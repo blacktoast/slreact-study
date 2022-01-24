@@ -800,6 +800,7 @@ router.post("/users", isNotLoggedIn, async (req, res, next) => {
       return res.status(403).send("이미 사용 중인 아이디입니다.");
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
+    console.log("test");
     const user = await User.create({
       email: req.body.email,
       nickname: req.body.nickname,
@@ -811,6 +812,8 @@ router.post("/users", isNotLoggedIn, async (req, res, next) => {
     await channel.addMembers(user);
     res.status(201).send("ok");
   } catch (error) {
+    console.log("test");
+
     console.error(error);
     next(error); // status 500
   }
