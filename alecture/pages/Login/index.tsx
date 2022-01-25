@@ -5,27 +5,37 @@ import fetcher from '@utils/fetcher';
 // import fetcher from '@utils/fetcher';
 import axios, { AxiosError } from 'axios';
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, Route } from 'react-router-dom';
 import useSWR from 'swr';
 // import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 function Login(props) {
-  const { data, error } = useSWR('/api/users', fetcher);
-  console.log(data);
+  const { data, error, mutate } = useSWR('/api/users', fetcher);
+
   // const queryClient = useQueryClient();
   const [logInError, setLogInError] = useState(false);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
+  const [loginError, setLoginError] = useState(false);
+
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      axios.post('api/users/login', { email, password }, { withCredentials: true }).then((response) => {
-        console.log(response);
-      });
+      axios
+        .post('api/users/login', { email, password }, { withCredentials: true })
+        .then((response) => {
+          console.log(response);
+          mutate();
+        })
+        .catch((error) => {});
     },
     [email, password],
   );
 
+  if (data) {
+    console.log('test ' + data);
+    <Route element={<Navigate to="/workspace/channel" />} />;
+  }
   // console.log(error, userData);
   // if (!error && userData) {
   //   console.log('로그인됨', userData);

@@ -5,6 +5,7 @@ import loadable from '@loadable/component';
 
 const Login = loadable(() => import('@pages/Login'));
 const SignUp = loadable(() => import('@pages/SignUp'));
+const Channel = loadable(() => import('@pages/Channel'));
 
 function App(_props: any) {
   return (
@@ -13,6 +14,7 @@ function App(_props: any) {
 
       <Route path="/login" element={<Login></Login>} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="workspace" element={<Channel />} />
     </Routes>
   );
 }
