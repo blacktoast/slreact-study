@@ -1,12 +1,17 @@
 import React, { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import { Button, Error, Form, Header, Input, Label, LinkContainer, Success } from './styled';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useInput from '@hooks/useInput';
 import axios from 'axios';
 import { request } from 'http';
+import fetcher from '@utils/fetcher';
+import useSWR from 'swr';
 
 function SignUp(props) {
+  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+  const nav = useNavigate();
+
   const [email, onChangeEmail] = useInput('');
   const [nickname, onChangeNickname] = useInput('');
   const [password, setPassword] = useState('');
@@ -56,6 +61,9 @@ function SignUp(props) {
     [email, nickname, password, passwordCheck],
   );
 
+  if (data) {
+    nav('/workspace/channel');
+  }
   return (
     <div id="container">
       <Header>Sleact</Header>

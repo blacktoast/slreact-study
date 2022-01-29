@@ -5,13 +5,13 @@ import fetcher from '@utils/fetcher';
 // import fetcher from '@utils/fetcher';
 import axios, { AxiosError } from 'axios';
 import React, { useCallback, useState } from 'react';
-import { Link, Navigate, Route } from 'react-router-dom';
+import { Link, Navigate, Route, Router, Routes, useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
 // import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 function Login(props) {
-  const { data, error, mutate } = useSWR('/api/users', fetcher);
-
+  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+  const nav = useNavigate();
   // const queryClient = useQueryClient();
   const [logInError, setLogInError] = useState(false);
   const [email, onChangeEmail] = useInput('');
@@ -22,7 +22,7 @@ function Login(props) {
     (e) => {
       e.preventDefault();
       axios
-        .post('api/users/login', { email, password }, { withCredentials: true })
+        .post(' http://localhost:3095/api/users/login', { email, password }, { withCredentials: true })
         .then((response) => {
           console.log(response);
           mutate();
@@ -34,7 +34,7 @@ function Login(props) {
 
   if (data) {
     console.log('test ' + data);
-    <Route element={<Navigate to="/workspace/channel" />} />;
+    nav('/workspace/channel');
   }
   // console.log(error, userData);
   // if (!error && userData) {

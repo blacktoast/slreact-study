@@ -1,6 +1,5 @@
 import React from 'react';
-import { Navigate, Route, Router } from 'react-router';
-import { Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import loadable from '@loadable/component';
 
 const Login = loadable(() => import('@pages/Login'));
@@ -14,7 +13,7 @@ function App(_props: any) {
 
       <Route path="/login" element={<Login></Login>} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="workspace" element={<Channel />} />
+      <Route path="/workspace/channel" element={<Channel />} />
     </Routes>
   );
 }
