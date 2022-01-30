@@ -64,6 +64,7 @@ function SignUp(props) {
   if (data) {
     nav('/workspace/channel');
   }
+
   return (
     <div id="container">
       <Header>Sleact</Header>

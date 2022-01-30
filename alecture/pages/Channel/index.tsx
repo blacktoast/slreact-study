@@ -1,10 +1,14 @@
 import Workspace from '@layouts/Workspace';
+import { Workspaces } from '@layouts/Workspace/styles';
 import React from 'react';
+import { Container, Header } from './styles';
 
 function Channel(props) {
   return (
     <Workspace>
-      <div> 채널에 입장하신걸 축하합니다</div>
+      <Container>
+        <Header>채널!</Header>
+      </Container>
     </Workspace>
   );
 }
