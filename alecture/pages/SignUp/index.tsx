@@ -10,6 +10,7 @@ import useSWR from 'swr';
 
 function SignUp(props) {
   const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+
   const nav = useNavigate();
 
   const [email, onChangeEmail] = useInput('');
